@@ -17,6 +17,7 @@ export default function RootLayout({ children }) {
           <Link href="/" className="logo">Appleforum</Link>
           <Link href="/list">List</Link>
           <Link href="/write">Write</Link>
+          <Link href="/write/wrpage">Write/wrpage</Link>
         </div>
         {children}
       </body>
