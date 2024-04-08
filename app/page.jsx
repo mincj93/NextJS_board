@@ -1,25 +1,34 @@
-import { connectDB } from "@/util/database.js"
+'use client'
 import 이미지 from '/public/dogi.png';
 import Image from "next/image";
+import { useState } from "react";
 
-export default async function Home() {
-  // let client = await connectDB();
-  // const db = client.db('forum');
-  // let result = await db.collection('post').find().toArray();
+export default function Home() {
 
   let 상품 = ['Tomatoes', 'Pasta', 'Coconut']
+
+  const [state, setState] = useState({
+    stateOne : 0,
+    stateTwo : 1
+  });
+
+  const {
+    stateOne,
+    stateTwo
+  } = state;
+  
+  const handleInputChange = (e) => {
+    // Input 값 변경 시 실행
+    const value = e.target.value;
+    setState((prevState) => ({
+      ...prevState,
+      stateOne: value,
+    }));
+  };
+
   return (
     <div>
       <h4 className="title">상품목록</h4>
-      {/* <div className="food"> 
-        <h4>{ 상품[0] } $40</h4>
-      </div>
-      <div className="food"> 
-        <h4>{ 상품[1] } $40</h4>
-      </div>
-      <div className="food"> 
-        <h4>{ 상품[2] } $40</h4>
-      </div> */}
       {상품.map((product, idx) => {
         console.log(product);
         return (
@@ -29,6 +38,10 @@ export default async function Home() {
 
       <Image src={이미지} alt="설명" />
 
+      <br />
+      스테이트 : {JSON.stringify(state)}<br />
+      stateOne : <input type='text' value={stateOne} onChange={handleInputChange}></input><br />
+      stateTwo : {stateTwo}
     </div>
   )
 }
